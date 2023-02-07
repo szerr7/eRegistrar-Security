@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>updatedForm</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.2.3/cerulean/bootstrap.min.css"
+        integrity="sha512-1rXsIsq9uaj3bxRth2+Mw1slRDxuPzGlfJ8PaLmkO3/OtvCL7jVQrdxaC1VvCmCzKRMdKu0pmbCtqQz/3/xORA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+<header th:replace="fragment/header :: header"></header>
+<div class="container my-5">
+  <h3> Update Student</h3>
+  <div class="card">
+    <div class="card-body">
+      <div class="col-md-8">
+        <form action="#" th:action="@{/secured/student/update/{id}(id=${student.studentId})}" th:object="${student}" method="post">
+          <input type="hidden" name="studentId" th:value="${student.studentId}">
+          <div class="row">
+            <div class="form-group col-md-6">
+              <label for="firstName" class="col-form-label">First Name</label>
+              <input type="text" th:field="*{firstName}" class="form-control" id="firstName" placeholder="firstName">
+              <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-8">
+              <label for="lastName" class="col-form-label">Last Name</label>
+              <input type="text" th:field="*{lastName}" class="form-control" id="lastName" placeholder="lastName">
+              <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-8">
+              <label for="cgpa" class="col-form-label">GPA</label>
+              <input type="text" th:field="*{cgpa}" class="form-control" id="cgpa" placeholder="cgpa">
+              <span th:if="${#fields.hasErrors('cgpa')}" th:errors="*{cgpa}" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-8">
+              <label for="dateOfEnrollment" class="col-form-label">Enrollment date</label>
+              <input type="date" th:field="*{enrollmentDate}" class="form-control" id="dateOfEnrollment" placeholder="dateOfEnrollment">
+              <span th:if="${#fields.hasErrors('enrollmentDate')}" th:errors="*{enrollmentDate}" class="text-danger"></span>
+            </div>
+
+            <div class="form-group col-md-8">
+              <input type="submit" class="btn btn-primary" value="Update Student">
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+
+</html>

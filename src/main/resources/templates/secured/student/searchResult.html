@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>search student</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<header th:replace="fragment/header :: header"></header>
+
+<main>
+    <h1>System Administration</h1>
+    <nav>
+        <a style="margin: 20px"class="btn btn-outline-primary" href="/secured/student/list">List of Students</a>
+         <br>
+
+
+    </nav>
+    <h2 style="background-color: aqua;">Students search result for '[[${searchString}]]'</h2>
+    <section>
+        <form action="/secured/student/search" method="get">
+            <fieldset>
+                <legend style="font-weight: bolder;">Search for student(s)</legend>
+                <label>
+                    You may search by student by  Name.
+                </label>
+                <div>
+                    <input type="search" name="searchString" id="searchString" style="width: 35%; height: 4em;"
+                           th:value="${searchString}" placeholder="Enter some text to search for student"
+                           autofocus>
+                    <button type="submit" style="height: 4em; width: 7em;">Search</button>
+                </div>
+            </fieldset>
+        </form>
+    </section>
+    <section style="margin-top: 1em;">
+        <table class="table table-success table-striped-columns">
+            <thead>
+            <tr>
+                <th>#</th>
+
+                <th>Student Number</th>
+                <th>First name</th>
+                <th>Middle Name</th>
+                <th>Last Name</th>
+                <th>GPA</th>
+                <th>International</th>
+                <th>enrollment Date</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="students, counter : ${students}">
+                <th th:text="${counter.count}"></th>
+                <td th:text="${students.studentNumber}"></td>
+                <td th:text="${students.firstName}"></td>
+                <td th:text="${students.middleName}"></td>
+                <td th:text="${students.lastName}"></td>
+                <td th:text="${students.cgpa}"></td>
+                <td th:text="${students.isInternational}"></td>
+                <td th:text="${students.enrollmentDate}"></td>
+
+
+            </tr>
+<!--            <tr th:if="${students.isEmpty()}">-->
+<!--                <td colspan="3" th:align="center">No student found</td>-->
+<!--            </tr>-->
+            </tbody>
+        </table>
+    </section>
+</main>
+
+<footer th:replace="fragment/footer :: footer"></footer>
+</body>
+</html>
